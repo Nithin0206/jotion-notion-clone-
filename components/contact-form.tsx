@@ -11,7 +11,6 @@ import send from "@/lib/email";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useHelp } from "@/hooks/use-help";
 import { formSchema } from "@/convex/schema";
-import Router from "next/router";
 
 export default function ContactForm() {
   const help = useHelp();

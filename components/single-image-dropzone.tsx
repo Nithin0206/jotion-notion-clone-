@@ -1,12 +1,10 @@
-'use client';
-
 import { UploadCloudIcon, X } from 'lucide-react';
 import * as React from 'react';
 import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { twMerge } from 'tailwind-merge';
+import Image from 'next/image'; // Import next/image for optimized images
 
 import { Spinner } from './spinner';
-
 
 const variants = {
   base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
@@ -142,11 +140,13 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           <input ref={ref} {...getInputProps()} />
 
           {imageUrl ? (
-            // Image Preview
-            <img
+            // Image Preview using next/image
+            <Image
               className="h-full w-full rounded-md object-cover"
               src={imageUrl}
-              alt={acceptedFiles[0]?.name}
+              alt={acceptedFiles[0]?.name || "Image Preview"}
+              layout="fill" // Makes the image occupy the entire container
+              objectFit="cover" // Ensures proper scaling within the container
             />
           ) : (
             // Upload Icon

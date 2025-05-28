@@ -1,8 +1,7 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useHelp } from "@/hooks/use-help";
-import { Label } from "@/components/ui/label";
 import ContactForm from "@/components/contact-form";
 
 

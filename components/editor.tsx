@@ -28,7 +28,13 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
   };
 
   // Parse the initial content and ensure it's an array of blocks
-  let parsedInitialContent: any = [];
+  interface Block {
+    type: string;
+    content: Array<{ type: string; text: string }>;
+  }
+  
+  let parsedInitialContent: Block[] = [];
+  
 
   try {
     if (initialContent) {

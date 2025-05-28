@@ -2,8 +2,6 @@
 
 import { useParams } from "next/navigation";
 import { useMutation, useQuery } from "convex/react";
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
 import  Editor  from "@/components/editor";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
