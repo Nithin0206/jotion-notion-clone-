@@ -14,6 +14,8 @@ import { formSchema } from "@/convex/schema";
 
 export default function ContactForm() {
   const help = useHelp();
+  
+  // Initialize form with default values and zod validation
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,9 +27,14 @@ export default function ContactForm() {
   });
 
   // Handle form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    send(values);
-    help.onClose();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      // Send email using the provided send function
+      await send(values); 
+      help.onClose();  // Close help modal or any related action after submission
+    } catch (error) {
+      console.error("Form submission failed:", error);  // Log any errors that occur during submission
+    }
   }
 
   return (
@@ -35,7 +42,7 @@ export default function ContactForm() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Contact Us</CardTitle>
-          <CardDescription>Send us a message and we'll get back to you as soon as possible.</CardDescription>
+          <CardDescription>Send us a message and we wll get back to you as soon as possible.</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -52,7 +59,7 @@ export default function ContactForm() {
                         <FormControl>
                           <Input placeholder="Your first name" {...field} />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage>{form.formState.errors.firstname?.message}</FormMessage>
                       </FormItem>
                     )}
                   />
@@ -68,7 +75,7 @@ export default function ContactForm() {
                         <FormControl>
                           <Input placeholder="Your last name" {...field} />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage>{form.formState.errors.lastname?.message}</FormMessage>
                       </FormItem>
                     )}
                   />
@@ -85,7 +92,7 @@ export default function ContactForm() {
                       <FormControl>
                         <Input placeholder="Your email" {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage>{form.formState.errors.email?.message}</FormMessage>
                     </FormItem>
                   )}
                 />
@@ -104,9 +111,9 @@ export default function ContactForm() {
                           placeholder="Type in your message here"
                           className="min-h-[120px]"
                           {...field}
-                        ></Textarea>
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage>{form.formState.errors.message?.message}</FormMessage>
                     </FormItem>
                   )}
                 />
