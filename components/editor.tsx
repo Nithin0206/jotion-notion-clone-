@@ -4,6 +4,7 @@ import "@blocknote/mantine/style.css";
 import { useBlockNote } from "@blocknote/react";
 import { useTheme } from "next-themes";
 import { useEdgeStore } from "@/lib/edgestore";
+import type { PartialBlock } from "@blocknote/core";
 
 // Define the EditorProps interface
 interface EditorProps {
@@ -79,8 +80,7 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
-        onChange={(editor: { topLevelBlocks: any }) => {
-          // Trigger the onChange function with the updated content
+        onChange={(editor: { topLevelBlocks: PartialBlock[] }) => {
           onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
         }}
       />

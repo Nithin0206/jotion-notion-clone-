@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash, CircleHelp } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash, HelpCircle } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -178,7 +178,7 @@ export const Navigation = () =>{
                icon={PlusCircle}
                />
                {/* <Item onClick={handleChat} label="Chat" icon={MessageSquare} /> */}
-               <Item onClick={help.onOpen} label="Need Help? / Share Feedback" icon ={CircleHelp} />
+               <Item onClick={help.onOpen} label="Need Help? / Share Feedback" icon={HelpCircle} />
 
             </div>
 
